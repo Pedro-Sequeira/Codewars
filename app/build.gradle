@@ -36,12 +36,16 @@ dependencies {
     // Core with Ktx
     implementation "androidx.core:core-ktx:$version_core"
     implementation "androidx.appcompat:appcompat:$version_appcompat"
+
     // JUnit
     testImplementation "junit:junit:$version_junit"
     androidTestImplementation "androidx.test.ext:junit:$version_junit_extension"
 
     // Espresso
     androidTestImplementation "androidx.test.espresso:espresso-core:$version_espresso"
+
+    // ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extensions"
 
     // Constraint Layout
     implementation "androidx.constraintlayout:constraintlayout:$version_constraint_layout"
