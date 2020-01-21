@@ -19,13 +19,9 @@ class SearchViewModel : ViewModel() {
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    init {
-        getUser()
-    }
-
-    private fun getUser() {
+    fun getUser(query: String?) {
         coroutineScope.launch {
-            val getUserDeferred = CodewarsApi.retrofitService.getUser()
+            val getUserDeferred = CodewarsApi.retrofitService.getUser(query)
             try {
                 val result = getUserDeferred.await()
                 _user.value = result

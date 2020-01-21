@@ -8,6 +8,7 @@ import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 private const val BASE_URL = "https://www.codewars.com/api/v1/users/"
 
@@ -22,8 +23,8 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 interface CodewarsApiService {
-    @GET("g964")
-    fun getUser(): Deferred<User>
+    @GET("{username}")
+    fun getUser(@Path("username") name: String?): Deferred<User>
 }
 
 object CodewarsApi {

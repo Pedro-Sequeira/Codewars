@@ -33,22 +33,14 @@
 
         <TextView
             android:id="@+id/userTest"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@{viewModel.user.username}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/search"
-            tools:text="testing some very large string testing some very large string testing some very large string testing some very large string testing some very large string testing some very large string testing some very large string testing some very large string testing some very large string testing some very large string testing some very large string testing some very large string testing some very large string testing some very large string testing some very large string testing some very large string testing some very large string testing some very large string testing some very large string testing some very large string testing some very large string testing some very large string" />
-
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/search"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
             app:layout_constraintEnd_toStartOf="@id/guideline_end"
             app:layout_constraintStart_toEndOf="@id/guideline_start"
             app:layout_constraintTop_toTopOf="parent"
-            app:queryHint="Search by username" />
+            tools:text="username" />
 
         <TextView
             android:id="@+id/search_list_header"
