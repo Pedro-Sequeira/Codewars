@@ -18,13 +18,12 @@ private val moshi = Moshi.Builder()
 
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
-    .addCallAdapterFactory(CoroutineCallAdapterFactory())
     .baseUrl(BASE_URL)
     .build()
 
 interface CodewarsApiService {
     @GET("{username}")
-    fun getUser(@Path("username") name: String?): Deferred<User>
+    suspend fun getUser(@Path("username") name: String?): User
 }
 
 object CodewarsApi {

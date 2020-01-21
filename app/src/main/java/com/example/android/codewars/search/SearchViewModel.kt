@@ -21,13 +21,7 @@ class SearchViewModel : ViewModel() {
 
     fun getUser(query: String?) {
         coroutineScope.launch {
-            val getUserDeferred = CodewarsApi.retrofitService.getUser(query)
-            try {
-                val result = getUserDeferred.await()
-                _user.value = result
-            } catch (e: Exception) {
-
-            }
+            _user.value = CodewarsApi.retrofitService.getUser(query)
         }
     }
 }
