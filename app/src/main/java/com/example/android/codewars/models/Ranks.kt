@@ -1,5 +1,5 @@
 package com.example.android.codewars.models
 
-data class Rank(
+data class Ranks(
     val overall: Overall
 )
