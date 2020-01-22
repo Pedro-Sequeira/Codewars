@@ -32,7 +32,7 @@
             app:layout_constraintGuide_end="8dp" />
 
         <TextView
-            android:id="@+id/userTest"
+            android:id="@+id/username"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -49,15 +49,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:background="@color/colorPrimaryDark"
-            android:paddingStart="8dp"
-            android:paddingTop="2dp"
-            android:paddingEnd="8dp"
-            android:paddingBottom="2dp"
+            android:padding="8dp"
             android:text="Recent Searches"
-            android:textColor="@color/colorTextPrimary"
+            android:textColor="@android:color/white"
             app:layout_constraintEnd_toStartOf="@id/order_by_rank"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/userTest" />
+            app:layout_constraintTop_toBottomOf="@id/username" />
 
         <TextView
             android:id="@+id/order_by_rank"
@@ -65,12 +62,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorPrimaryDark"
-            android:paddingStart="8dp"
-            android:paddingTop="2dp"
-            android:paddingEnd="8dp"
-            android:paddingBottom="2dp"
+            android:padding="8dp"
             android:text="Order by rank"
-            android:textColor="@color/colorTextPrimary"
+            android:textColor="@android:color/white"
             app:layout_constraintBaseline_toBaselineOf="@id/search_list_header"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/search_list_header" />
