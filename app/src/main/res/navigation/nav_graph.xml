@@ -5,6 +5,6 @@
 
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.android.codewars.search.SearchFragment"
+        android:name="com.example.android.codewars.views.search.SearchFragment"
         android:label="SearchFragment" />
 </navigation>

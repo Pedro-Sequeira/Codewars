@@ -1,6 +1,5 @@
 package com.example.android.codewars.models
 
-data class Overall(
-    val name: String,
+data class Language(
     val score: Int
 )

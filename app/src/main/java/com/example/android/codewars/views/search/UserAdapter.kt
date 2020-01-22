@@ -1,0 +1,58 @@
+package com.example.android.codewars.views.search
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.example.android.codewars.databinding.ListItemUserBinding
+import com.example.android.codewars.models.User
+
+class UserAdapter : ListAdapter<User, UserAdapter.ViewHolder>(UserDiffCallback()) {
+
+    var users: List<User> = emptyList()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder.from(parent)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val user = getItem(position)
+        holder.bind(user!!)
+    }
+
+    class ViewHolder private constructor(private val binding: ListItemUserBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(user: User) {
+            binding.user = user
+            binding.executePendingBindings()
+        }
+
+        companion object {
+            fun from(parent: ViewGroup): ViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = ListItemUserBinding.inflate(layoutInflater, parent, false)
+                return ViewHolder(binding)
+            }
+        }
+    }
+
+    class UserDiffCallback : DiffUtil.ItemCallback<User>() {
+
+        override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
+            return oldItem.username == newItem.username
+        }
+
+        override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
+            return oldItem == newItem
+        }
+    }
+
+    class UserListener(val clickListener: (username: String) -> Unit) {
+        fun onClick(user: User) = clickListener(user.username)
+    }
+}

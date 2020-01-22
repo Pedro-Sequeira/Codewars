@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">Codewars</string>
+
+    <!-- Search -->
     <string name="search_hint">Search users</string>
+    <string name="recent_search_header">Recent Searches</string>
+    <string name="order_button"><u>Order by rank</u></string>
+
+    <!-- User Item -->
+    <string name="username_label">Username</string>
+    <string name="rank_label">Rank</string>
+    <string name="best_language_label">Best language</string>
 </resources>
