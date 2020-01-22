@@ -1,6 +1,5 @@
 package com.example.android.codewars.network
 
-import com.example.android.codewars.models.User
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -21,7 +20,7 @@ private val retrofit = Retrofit.Builder()
 
 interface CodewarsApiService {
     @GET("{username}")
-    suspend fun getUser(@Path("username") name: String?): User
+    suspend fun getUser(@Path("username") name: String?): UserContainer
 }
 
 object CodewarsApi {
