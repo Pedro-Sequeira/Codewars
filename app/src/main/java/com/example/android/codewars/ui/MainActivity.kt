@@ -1,7 +1,8 @@
-package com.example.android.codewars
+package com.example.android.codewars.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.android.codewars.R
 
 class MainActivity : AppCompatActivity() {
 

@@ -11,7 +11,7 @@
 
         <variable
             name="clickListener"
-            type="com.example.android.codewars.views.search.UserAdapter.UserListener" />
+            type="com.example.android.codewars.adapters.UserAdapter.UserListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView

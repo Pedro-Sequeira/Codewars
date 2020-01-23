@@ -1,4 +1,4 @@
-package com.example.android.codewars.views.search
+package com.example.android.codewars.viewModels
 
 import android.app.Application
 import androidx.lifecycle.ViewModel

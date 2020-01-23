@@ -1,4 +1,4 @@
-package com.example.android.codewars.views.search
+package com.example.android.codewars.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,10 +10,22 @@ import com.example.android.codewars.domainModels.User
 
 private const val USERS_TO_SHOW_LIMIT = 5
 
-class UserAdapter : ListAdapter<User, UserAdapter.ViewHolder>(UserDiffCallback()) {
+class UserAdapter : ListAdapter<User, UserAdapter.ViewHolder>(UserDiffCallback) {
+
+    companion object UserDiffCallback : DiffUtil.ItemCallback<User>() {
+        override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
+            return oldItem == newItem
+        }
+
+        override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
+            return oldItem.username == newItem.username
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder.from(parent)
+        return ViewHolder.from(
+            parent
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -34,17 +46,6 @@ class UserAdapter : ListAdapter<User, UserAdapter.ViewHolder>(UserDiffCallback()
                 val binding = ListItemUserBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)
             }
-        }
-    }
-
-    class UserDiffCallback : DiffUtil.ItemCallback<User>() {
-
-        override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
-            return oldItem.username == newItem.username
-        }
-
-        override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
-            return oldItem == newItem
         }
     }
 

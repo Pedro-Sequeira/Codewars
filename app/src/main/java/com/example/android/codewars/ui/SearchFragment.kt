@@ -1,14 +1,15 @@
-package com.example.android.codewars.views.search
+package com.example.android.codewars.ui
 
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.RecyclerView
 import com.example.android.codewars.R
+import com.example.android.codewars.adapters.UserAdapter
 import com.example.android.codewars.databinding.FragmentSearchBinding
+import com.example.android.codewars.viewModels.SearchViewModel
+import com.example.android.codewars.viewModels.SearchViewModelFactory
 
 class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
 
@@ -31,22 +32,10 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
 
         binding.lifecycleOwner = this
 
-        setHasOptionsMenu(true)
-
         val adapter = UserAdapter()
         binding.usersList.adapter = adapter
 
-        searchViewModel.users.observe(this, Observer {
-            it?.let {
-                adapter.submitList(it)
-            }
-        })
-
-        adapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
-            override fun onItemRangeMoved(fromPosition: Int, toPosition: Int, itemCount: Int) {
-                binding.usersList.scrollToPosition(0)
-            }
-        })
+        setHasOptionsMenu(true)
 
         return binding.root
     }

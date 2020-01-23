@@ -1,11 +1,8 @@
-package com.example.android.codewars.views.search
+package com.example.android.codewars.viewModels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.android.codewars.database.UsersDatabase
-import com.example.android.codewars.domainModels.User
 import com.example.android.codewars.network.CodewarsApi
 import com.example.android.codewars.repository.UsersRepository
 import kotlinx.coroutines.CoroutineScope
@@ -20,20 +17,8 @@ class SearchViewModel(
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    private val _user = MutableLiveData<User>()
-    val user: LiveData<User>
-        get() = _user
-
     private val database = UsersDatabase.getInstance(application)
-
-    private val usersRepository =
-        UsersRepository(database.usersDao, CodewarsApi.retrofitService)
-
-    init {
-        coroutineScope.launch {
-            usersRepository.users
-        }
-    }
+    private val usersRepository = UsersRepository(database.usersDao, CodewarsApi.retrofitService)
 
     val users = usersRepository.users
 
