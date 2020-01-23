@@ -7,7 +7,7 @@
 
         <variable
             name="user"
-            type="com.example.android.codewars.models.User" />
+            type="com.example.android.codewars.domainModels.User" />
 
         <variable
             name="clickListener"

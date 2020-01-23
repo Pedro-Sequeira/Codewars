@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.codewars.databinding.ListItemUserBinding
-import com.example.android.codewars.models.User
+import com.example.android.codewars.domainModels.User
+
+private const val USERS_TO_SHOW_LIMIT = 5
 
 class UserAdapter : ListAdapter<User, UserAdapter.ViewHolder>(UserDiffCallback()) {
 
@@ -54,5 +56,13 @@ class UserAdapter : ListAdapter<User, UserAdapter.ViewHolder>(UserDiffCallback()
 
     class UserListener(val clickListener: (username: String) -> Unit) {
         fun onClick(user: User) = clickListener(user.username)
+    }
+
+    override fun getItemCount(): Int {
+        return if (super.getItemCount() > USERS_TO_SHOW_LIMIT) {
+            USERS_TO_SHOW_LIMIT
+        } else {
+            super.getItemCount()
+        }
     }
 }

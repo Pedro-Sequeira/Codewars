@@ -4,12 +4,14 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.android.codewars.database.DatabaseUser
-import com.example.android.codewars.database.UserDatabase
-import com.example.android.codewars.models.User
+import com.example.android.codewars.database.UsersDatabase
+import com.example.android.codewars.domainModels.User
 import com.example.android.codewars.network.CodewarsApi
 import com.example.android.codewars.repository.UsersRepository
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
 class SearchViewModel(
     application: Application
@@ -22,27 +24,22 @@ class SearchViewModel(
     val user: LiveData<User>
         get() = _user
 
-    private val database = UserDatabase.getInstance(application)
+    private val database = UsersDatabase.getInstance(application)
 
-    val users = database.userDatabaseDao.getAllUsers()
-
-    private val usersRepository = UsersRepository(database)
+    private val usersRepository =
+        UsersRepository(database.usersDao, CodewarsApi.retrofitService)
 
     init {
         coroutineScope.launch {
-            database.userDatabaseDao.getAllUsers()
+            usersRepository.users
         }
     }
+
+    val users = usersRepository.users
 
     fun getUser(query: String?) {
         coroutineScope.launch {
-            CodewarsApi.retrofitService.getUser(query)
-        }
-    }
-
-    private suspend fun insert(user: DatabaseUser) {
-        withContext(Dispatchers.IO) {
-            database.userDatabaseDao.insert(user)
+            usersRepository.getUser(query)
         }
     }
 

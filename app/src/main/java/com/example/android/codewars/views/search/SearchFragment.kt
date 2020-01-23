@@ -7,9 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.android.codewars.R
-import com.example.android.codewars.database.UserDatabase
 import com.example.android.codewars.databinding.FragmentSearchBinding
-import com.example.android.codewars.models.User
+import com.example.android.codewars.domainModels.User
 
 class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
 
@@ -21,12 +20,10 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val binding = FragmentSearchBinding.inflate(inflater)
 
         val application = requireNotNull(this.activity).application
-        val dataSource = UserDatabase.getInstance(application).userDatabaseDao
-        val viewModelFactory = SearchViewModelFactory(dataSource, application)
+        val viewModelFactory = SearchViewModelFactory(application)
         val searchViewModel = ViewModelProviders
             .of(this, viewModelFactory)
             .get(SearchViewModel::class.java)
@@ -52,7 +49,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel.users.observe(viewLifecycleOwner, Observer<List<User>> { users ->
+        viewModel.users.observe(this, Observer<List<User>> { users ->
             users?.apply {
                 viewModelAdapter?.users = users
             }
@@ -69,7 +66,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
 
     override fun onQueryTextSubmit(query: String?): Boolean {
         viewModel.getUser(query)
-        return false
+        return true
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {

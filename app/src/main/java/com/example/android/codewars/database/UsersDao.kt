@@ -1,0 +1,19 @@
+package com.example.android.codewars.database
+
+import androidx.lifecycle.LiveData
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+
+@Dao
+interface UsersDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(user: UserDB?)
+
+    @Query("SELECT * from user_search_history_table WHERE username = :username")
+    fun getUser(username: String?): UserDB?
+
+    @Query("SELECT * FROM user_search_history_table")
+    fun getAllUsers(): LiveData<List<UserDB>>
+}
