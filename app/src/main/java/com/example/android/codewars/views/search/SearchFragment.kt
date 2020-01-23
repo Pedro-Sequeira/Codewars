@@ -6,9 +6,9 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.RecyclerView
 import com.example.android.codewars.R
 import com.example.android.codewars.databinding.FragmentSearchBinding
-import com.example.android.codewars.domainModels.User
 
 class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
 
@@ -39,6 +39,12 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         searchViewModel.users.observe(this, Observer {
             it?.let {
                 adapter.submitList(it)
+            }
+        })
+
+        adapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
+            override fun onItemRangeMoved(fromPosition: Int, toPosition: Int, itemCount: Int) {
+                binding.usersList.scrollToPosition(0)
             }
         })
 
