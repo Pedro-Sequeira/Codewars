@@ -10,7 +10,9 @@ import com.example.android.codewars.network.asDatabaseModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 class UsersRepository @Inject constructor(
     private val usersDao: UsersDao,
     private val apiService: ApiService
