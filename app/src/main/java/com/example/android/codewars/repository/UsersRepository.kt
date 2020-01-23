@@ -2,7 +2,6 @@ package com.example.android.codewars.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.example.android.codewars.database.UserDB
 import com.example.android.codewars.database.UsersDao
 import com.example.android.codewars.database.asDomainModel
 import com.example.android.codewars.domainModels.User
@@ -18,7 +17,7 @@ class UsersRepository @Inject constructor(
 ) {
 
     val users: LiveData<List<User>> = Transformations.map(usersDao.getAllUsers()) {
-        it.asDomainModel()
+        it.asDomainModel().asReversed()
     }
 
     suspend fun getUser(username: String?) {

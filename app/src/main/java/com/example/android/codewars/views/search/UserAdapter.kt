@@ -12,12 +12,6 @@ private const val USERS_TO_SHOW_LIMIT = 5
 
 class UserAdapter : ListAdapter<User, UserAdapter.ViewHolder>(UserDiffCallback()) {
 
-    var users: List<User> = emptyList()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
     }

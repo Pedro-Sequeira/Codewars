@@ -45,17 +45,6 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
         return binding.root
     }
 
-    private var viewModelAdapter: UserAdapter? = null
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel.users.observe(this, Observer<List<User>> { users ->
-            users?.apply {
-                viewModelAdapter?.users = users
-            }
-        })
-    }
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.options_menu, menu)
         val item = menu.findItem(R.id.search)

@@ -1,7 +1,5 @@
 package com.example.android.codewars.network
 
-import androidx.lifecycle.LiveData
-import com.example.android.codewars.domainModels.User
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
