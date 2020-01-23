@@ -59,10 +59,9 @@ class UserAdapter : ListAdapter<User, UserAdapter.ViewHolder>(UserDiffCallback()
     }
 
     override fun getItemCount(): Int {
-        return if (super.getItemCount() > USERS_TO_SHOW_LIMIT) {
-            USERS_TO_SHOW_LIMIT
-        } else {
-            super.getItemCount()
+        if (super.getItemCount() > USERS_TO_SHOW_LIMIT) {
+            return USERS_TO_SHOW_LIMIT
         }
+        return super.getItemCount()
     }
 }
