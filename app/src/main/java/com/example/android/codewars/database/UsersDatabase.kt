@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.android.codewars.domainModels.User
 
-@Database(entities = [UserDB::class], version = 1)
+@Database(entities = [UserDB::class], version = 2)
 abstract class UsersDatabase : RoomDatabase() {
 
     abstract val usersDao: UsersDao

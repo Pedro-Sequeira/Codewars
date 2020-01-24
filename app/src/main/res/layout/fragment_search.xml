@@ -57,6 +57,19 @@
             tools:itemCount="5"
             tools:listitem="@layout/list_item_user" />
 
+        <include
+            android:id="@+id/progress_bar"
+            layout="@layout/layout_progress_bar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:apiStatus="@{viewModel.status}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/users_list"
+            tools:visibility="visible" />
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_start"
             android:layout_width="wrap_content"

@@ -4,7 +4,8 @@
     <!-- Search -->
     <string name="search_hint">Search users</string>
     <string name="recent_search_header">Recent Searches</string>
-    <string name="order_button"><u>Order by rank</u></string>
+    <string name="order_button">Order by rank</string>
+    <string name="progress_bar_text">Searching for user…</string>
 
     <!-- User Item -->
     <string name="username_label">Username</string>

@@ -10,10 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class SearchViewModel(
-    application: Application
-) : AndroidViewModel(application) {
-
+class SearchViewModel(application: Application) : AndroidViewModel(application) {
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
@@ -21,6 +18,7 @@ class SearchViewModel(
     private val usersRepository = UsersRepository(database.usersDao, CodewarsApi.retrofitService)
 
     val users = usersRepository.users
+    val status = usersRepository.status
 
     fun getUser(query: String?) {
         coroutineScope.launch {
