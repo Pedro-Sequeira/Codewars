@@ -27,19 +27,19 @@ fun UserDTO.asDomainModel(): User {
     return User(
         username = username,
         score = honor,
-        rank = formatRank(ranks.overall.name, honor)
+        rank = formatRank(ranks, honor)
     )
 }
 
 fun UserDTO.asDatabaseModel(): UserDB {
     return UserDB(
         username = username,
-        rank = formatRank(ranks.overall.name, honor),
+        rank = formatRank(ranks, honor),
         score = honor,
         creationDate = Calendar.getInstance().timeInMillis
     )
 }
 
-private fun formatRank(rank: String, score: Int): String {
-    return "$rank ($score)"
+private fun formatRank(rank: UserDTO.RanksDTO, score: Int): String {
+    return "${rank.overall.name} ($score)"
 }

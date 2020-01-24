@@ -46,7 +46,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/users_list"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:clipToPadding="false"
             android:paddingTop="@dimen/margin_small"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -54,6 +54,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_list_header"
+            app:layout_constraintVertical_bias="0"
             app:listData="@{viewModel.users}"
             tools:itemCount="5"
             tools:listitem="@layout/list_item_user" />
@@ -65,7 +66,7 @@
             android:layout_height="0dp"
             android:visibility="gone"
             app:apiStatus="@{viewModel.status}"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/users_list"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/users_list"

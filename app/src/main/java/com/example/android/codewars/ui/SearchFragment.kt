@@ -6,8 +6,8 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.android.codewars.R
-import com.example.android.codewars.ui.adapters.UserAdapter
 import com.example.android.codewars.databinding.FragmentSearchBinding
+import com.example.android.codewars.ui.adapters.UserAdapter
 import com.example.android.codewars.viewModels.SearchViewModel
 import com.example.android.codewars.viewModels.SearchViewModelFactory
 
@@ -33,8 +33,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
 
         binding.lifecycleOwner = this
 
-        val adapter = UserAdapter()
-        binding.usersList.adapter = adapter
+        binding.usersList.adapter = UserAdapter()
 
         setHasOptionsMenu(true)
 
