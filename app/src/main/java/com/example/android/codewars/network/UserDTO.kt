@@ -3,6 +3,7 @@ package com.example.android.codewars.network
 import com.example.android.codewars.database.UserDB
 import com.example.android.codewars.domainModels.User
 import com.squareup.moshi.JsonClass
+import java.util.*
 
 @JsonClass(generateAdapter = true)
 data class UserDTO(
@@ -18,6 +19,7 @@ fun UserDTO.asDomainModel(): User {
 
 fun UserDTO.asDatabaseModel(): UserDB {
     return UserDB(
-        username = username
+        username = username,
+        creationDate = Calendar.getInstance().timeInMillis
     )
 }

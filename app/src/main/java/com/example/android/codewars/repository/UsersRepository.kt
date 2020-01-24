@@ -36,7 +36,7 @@ class UsersRepository @Inject constructor(
         get() = _user
 
     val users: LiveData<List<User>> = Transformations.map(usersDao.getAllUsers()) {
-        it.asDomainModel().asReversed()
+        it.asDomainModel()
     }
     
     suspend fun getUser(username: String?) {

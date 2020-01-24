@@ -14,6 +14,6 @@ interface UsersDao {
     @Query("SELECT * from user_search_history_table WHERE username = :username")
     fun getUser(username: String?): UserDB?
 
-    @Query("SELECT * FROM user_search_history_table")
+    @Query("SELECT * FROM user_search_history_table ORDER BY creationDate DESC LIMIT 5")
     fun getAllUsers(): LiveData<List<UserDB>>
 }
