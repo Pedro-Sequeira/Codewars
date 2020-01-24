@@ -1,4 +1,4 @@
-package com.example.android.codewars.adapters
+package com.example.android.codewars.ui.adapters
 
 import android.view.View
 import androidx.databinding.BindingAdapter

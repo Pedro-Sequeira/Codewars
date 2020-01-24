@@ -2,9 +2,9 @@ package com.example.android.codewars.viewModels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import com.example.android.codewars.database.UsersDatabase
 import com.example.android.codewars.network.CodewarsApi
 import com.example.android.codewars.repository.UsersRepository
+import com.example.android.codewars.repository.database.UsersDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -20,9 +20,15 @@ class SearchViewModel(application: Application) : AndroidViewModel(application) 
     val users = usersRepository.users
     val status = usersRepository.status
 
-    fun getUser(query: String?) {
+    fun fetchUser(query: String?) {
         coroutineScope.launch {
-            usersRepository.getUser(query)
+            usersRepository.fetchUser(query)
+        }
+    }
+
+    fun orderByRank() {
+        users.value?.sortedByDescending {
+            it.score
         }
     }
 

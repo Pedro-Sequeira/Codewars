@@ -1,4 +1,4 @@
-package com.example.android.codewars.adapters
+package com.example.android.codewars.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

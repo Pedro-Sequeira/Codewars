@@ -11,7 +11,7 @@
 
         <variable
             name="clickListener"
-            type="com.example.android.codewars.adapters.UserAdapter.UserListener" />
+            type="com.example.android.codewars.ui.adapters.UserAdapter.UserListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -71,6 +71,7 @@
                 style="@style/UserListItemValue"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:text="@{user.rank}"
                 app:layout_constraintBaseline_toBaselineOf="@id/rank_label"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/username"

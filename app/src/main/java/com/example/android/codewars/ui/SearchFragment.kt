@@ -6,7 +6,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.android.codewars.R
-import com.example.android.codewars.adapters.UserAdapter
+import com.example.android.codewars.ui.adapters.UserAdapter
 import com.example.android.codewars.databinding.FragmentSearchBinding
 import com.example.android.codewars.viewModels.SearchViewModel
 import com.example.android.codewars.viewModels.SearchViewModelFactory
@@ -50,7 +50,7 @@ class SearchFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        viewModel.getUser(query)
+        viewModel.fetchUser(query)
         return false
     }
 

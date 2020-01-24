@@ -3,9 +3,9 @@ package com.example.android.codewars.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import com.example.android.codewars.database.UserDB
-import com.example.android.codewars.database.UsersDao
-import com.example.android.codewars.database.asDomainModel
+import com.example.android.codewars.repository.database.UserDB
+import com.example.android.codewars.repository.database.UsersDao
+import com.example.android.codewars.repository.database.asDomainModel
 import com.example.android.codewars.domainModels.User
 import com.example.android.codewars.network.ApiService
 import com.example.android.codewars.network.asDatabaseModel
@@ -39,10 +39,10 @@ class UsersRepository @Inject constructor(
         it.asDomainModel()
     }
     
-    suspend fun getUser(username: String?) {
+    suspend fun fetchUser(username: String?) {
         withContext(Dispatchers.IO) {
             refreshUser(username)
-            usersDao.getUser(username)
+            usersDao.fetchUser(username)
         }
     }
 
