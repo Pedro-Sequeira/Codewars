@@ -21,6 +21,9 @@ private val retrofit = Retrofit.Builder()
 interface ApiService {
     @GET("{username}")
     suspend fun getUser(@Path("username") username: String?): UserDTO
+
+    @GET("{username}/code-challenges/authored")
+    suspend fun getAutheredChallenges(@Path("username") username: String?): AuthoredChallengesDTO
 }
 
 object CodewarsApi {

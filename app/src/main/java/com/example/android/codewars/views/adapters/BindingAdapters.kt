@@ -1,15 +1,17 @@
-package com.example.android.codewars.ui.adapters
+package com.example.android.codewars.views.adapters
 
 import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.codewars.R
-import com.example.android.codewars.domainModels.User
-import com.example.android.codewars.repository.ApiStatus
+import com.example.android.codewars.models.Challenge
+import com.example.android.codewars.models.User
+import com.example.android.codewars.network.ApiStatus
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.layout_progress_bar.view.*
 
-@BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<User>?) {
+@BindingAdapter("usersList")
+fun bindRecyclerViewUsers(recyclerView: RecyclerView, data: List<User>?) {
     val adapter = recyclerView.adapter as? UserAdapter
     adapter?.submitList(data)
     adapter?.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
@@ -23,8 +25,20 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<User>?) {
     })
 }
 
+@BindingAdapter("challengesList")
+fun bindRecyclerViewChallenges(recyclerView: RecyclerView, data: List<Challenge>?) {
+    val adapter = recyclerView.adapter as? ChallengesAdapter
+    adapter?.submitList(data)
+}
+
 @BindingAdapter("apiStatus")
 fun bindStatus(progressBar: View, status: ApiStatus?) {
+    when (progressBar.id) {
+        R.id.progress_bar_challenges -> {
+            progressBar.progress_bar_text.text =
+                progressBar.context.getString(R.string.challenge_loading_text)
+        }
+    }
     when (status) {
         ApiStatus.LOADING -> {
             progressBar.visibility = View.VISIBLE

@@ -6,12 +6,8 @@
     <data>
 
         <variable
-            name="user"
-            type="com.example.android.codewars.models.User" />
-
-        <variable
-            name="userClickListener"
-            type="com.example.android.codewars.views.adapters.UserAdapter.UserClickListener" />
+            name="challenge"
+            type="com.example.android.codewars.models.Challenge" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -27,7 +23,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> userClickListener.onClick(user)}"
             android:padding="@dimen/margin_small">
 
             <TextView
@@ -35,12 +30,14 @@
                 style="@style/UserListItemLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/username_label"
+                android:text="@string/challenge_label"
                 app:layout_constraintBottom_toTopOf="@id/description_label"
                 app:layout_constraintEnd_toStartOf="@id/barrier"
                 app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0"
+                app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
                 android:id="@+id/username"
@@ -48,11 +45,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_normal"
-                android:text="@{user.username}"
+                android:text="@{challenge.name}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/barrier"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="g964" />
+                tools:text="Sum by Factors" />
 
             <TextView
                 android:id="@+id/description_label"
@@ -60,8 +57,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
-                android:text="@string/rank_label"
-                app:layout_constraintBottom_toTopOf="@id/best_language_label"
+                android:text="@string/description_label"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/barrier"
                 app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintStart_toStartOf="parent"
@@ -69,44 +66,21 @@
 
             <TextView
                 android:id="@+id/rank"
-                style="@style/UserListItemValue"
+                style="@style/ChallengeListItemValue"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@{user.rank}"
+                android:text="@{challenge.description}"
                 app:layout_constraintBaseline_toBaselineOf="@id/description_label"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/username"
-                tools:text="1 kyu" />
-
-            <TextView
-                android:id="@+id/best_language_label"
-                style="@style/UserListItemLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_small"
-                android:text="@string/best_language_label"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/barrier"
-                app:layout_constraintHorizontal_bias="1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/description_label" />
-
-            <TextView
-                android:id="@+id/best_language"
-                style="@style/UserListItemValue"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintBaseline_toBaselineOf="@id/best_language_label"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/username"
-                tools:text="javascript" />
+                tools:text="Write a function that takes in a binary string and returns the equivalent decoded text (the text is ASCII encoded). Each 8 bits on the binary string represent 1 character on the ASCII table. The input string will always be a valid binary string." />
 
             <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:barrierDirection="end"
-                app:constraint_referenced_ids="challenge_label,description_label,best_language_label" />
+                app:constraint_referenced_ids="challenge_label,description_label" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

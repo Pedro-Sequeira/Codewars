@@ -1,6 +1,6 @@
 package com.example.android.codewars.network
 
-import com.example.android.codewars.domainModels.User
+import com.example.android.codewars.models.User
 import com.example.android.codewars.repository.database.UserDB
 import com.squareup.moshi.JsonClass
 import java.util.*

@@ -1,4 +1,4 @@
-package com.example.android.codewars.ui.adapters
+package com.example.android.codewars.views.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,9 +6,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.codewars.databinding.ListItemUserBinding
-import com.example.android.codewars.domainModels.User
+import com.example.android.codewars.models.User
 
-class UserAdapter : ListAdapter<User, UserAdapter.ViewHolder>(UserDiffCallback) {
+class UserAdapter(private val userClickListener: UserClickListener) :
+    ListAdapter<User, UserAdapter.ViewHolder>(UserDiffCallback) {
 
     companion object UserDiffCallback : DiffUtil.ItemCallback<User>() {
         override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
@@ -26,13 +27,14 @@ class UserAdapter : ListAdapter<User, UserAdapter.ViewHolder>(UserDiffCallback) 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val user = getItem(position)
-        holder.bind(user!!)
+        holder.bind(userClickListener, user!!)
     }
 
     class ViewHolder private constructor(private val binding: ListItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(user: User) {
+        fun bind(userClickListener: UserClickListener, user: User) {
             binding.user = user
+            binding.userClickListener = userClickListener
             binding.executePendingBindings()
         }
 
@@ -45,7 +47,7 @@ class UserAdapter : ListAdapter<User, UserAdapter.ViewHolder>(UserDiffCallback) 
         }
     }
 
-    class UserListener(val clickListener: (username: String) -> Unit) {
+    class UserClickListener(val clickListener: (username: String) -> Unit) {
         fun onClick(user: User) = clickListener(user.username)
     }
 }

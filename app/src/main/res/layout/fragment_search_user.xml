@@ -7,14 +7,14 @@
 
         <variable
             name="viewModel"
-            type="com.example.android.codewars.viewModels.SearchViewModel" />
+            type="com.example.android.codewars.viewModels.SearchUserViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingBottom="@dimen/margin_small"
-        tools:context=".ui.MainActivity">
+        tools:context=".views.MainActivity">
 
         <TextView
             android:id="@+id/search_list_header"
@@ -55,7 +55,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_list_header"
             app:layout_constraintVertical_bias="0"
-            app:listData="@{viewModel.users}"
+            app:usersList="@{viewModel.users}"
             tools:itemCount="5"
             tools:listitem="@layout/list_item_user" />
 

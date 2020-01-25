@@ -1,4 +1,4 @@
-package com.example.android.codewars.ui
+package com.example.android.codewars.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

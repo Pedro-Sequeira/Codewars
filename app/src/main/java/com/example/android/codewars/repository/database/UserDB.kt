@@ -2,7 +2,7 @@ package com.example.android.codewars.repository.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.android.codewars.domainModels.User
+import com.example.android.codewars.models.User
 
 @Entity(tableName = "user_search_history_table")
 data class UserDB constructor(
