@@ -42,9 +42,9 @@ class UsersRepository @Inject constructor(
     }
 
     private suspend fun refreshUser(username: String?) {
-        _status.value = ApiStatus.LOADING
         withContext(Dispatchers.Main) {
             try {
+                _status.value = ApiStatus.LOADING
                 val result = apiService.getUser(username)
                 if (result.success == null) {   // success only shows on failure
                     _status.value = ApiStatus.DONE
