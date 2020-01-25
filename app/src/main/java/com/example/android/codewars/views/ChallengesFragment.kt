@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import com.example.android.codewars.R
 import com.example.android.codewars.databinding.FragmentChallengesBinding
-import com.example.android.codewars.views.adapters.ChallengesAdapter
 import com.example.android.codewars.viewModels.ChallengesViewModel
 import com.example.android.codewars.viewModels.ChallengesViewModelFactory
+import com.example.android.codewars.views.adapters.ChallengesAdapter
+
 
 class ChallengesFragment : Fragment() {
 

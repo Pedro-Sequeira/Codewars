@@ -26,9 +26,9 @@ class ChallengesViewModel(application: Application, username: String) :
         get() = _challenges
 
     init {
-        _status.value = ApiStatus.LOADING
         coroutineScope.launch {
             try {
+                _status.value = ApiStatus.LOADING
                 _challenges.value = CodewarsApi.retrofitService.getAutheredChallenges(username).data
                 _status.value = ApiStatus.DONE
             } catch (e: Exception) {

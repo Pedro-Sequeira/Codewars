@@ -1,8 +1,7 @@
 <resources>
 <!-- App and Fragment Titles -->
-    <string name="app_name">Codewars</string>
-    <string name="search_user_fragment">SearchFragment</string>
-    <string name="challenges_fragment">ChallengesFragment</string>
+    <string name="search_user_fragment">Codewars Users</string>
+    <string name="challenges_fragment">Authored Challenges</string>
 
     <!-- Search -->
     <string name="search_hint">Search users</string>

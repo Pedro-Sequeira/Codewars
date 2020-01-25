@@ -33,14 +33,14 @@ fun bindRecyclerViewChallenges(recyclerView: RecyclerView, data: List<Challenge>
 
 @BindingAdapter("apiStatus")
 fun bindStatus(progressBar: View, status: ApiStatus?) {
-    when (progressBar.id) {
-        R.id.progress_bar_challenges -> {
-            progressBar.progress_bar_text.text =
-                progressBar.context.getString(R.string.challenge_loading_text)
-        }
-    }
     when (status) {
         ApiStatus.LOADING -> {
+            when (progressBar.id) {
+                R.id.progress_bar_challenges -> {
+                    progressBar.progress_bar_text.text =
+                        progressBar.context.getString(R.string.challenge_loading_text)
+                }
+            }
             progressBar.visibility = View.VISIBLE
         }
         ApiStatus.ERROR -> {
