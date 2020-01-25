@@ -13,10 +13,8 @@
         <action
             android:id="@+id/action_searchFragment_to_challengesFragment"
             app:destination="@id/challenges_fragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@anim/slide_in_right"
+            app:popEnterAnim="@anim/slide_in_right" />
     </fragment>
 
     <fragment
@@ -29,11 +27,7 @@
             app:argType="string" />
         <action
             android:id="@+id/action_challengesFragment_to_searchFragment"
-            app:destination="@id/search_fragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:destination="@id/search_fragment"/>
 
     </fragment>
 </navigation>
