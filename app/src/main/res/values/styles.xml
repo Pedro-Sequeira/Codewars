@@ -8,17 +8,17 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="UserListItemLabel" parent="TextAppearance.MaterialComponents.Subtitle2">
+    <style name="ListItemLabel" parent="TextAppearance.MaterialComponents.Subtitle2">
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
-    <style name="UserListItemValue" parent="TextAppearance.MaterialComponents.Body2">
+    <style name="ListItemValue" parent="TextAppearance.MaterialComponents.Body2">
         <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="android:maxLines">1</item>
         <item name="android:ellipsize">end</item>
     </style>
 
-    <style name="ChallengeListItemValue" parent="UserListItemValue">
+    <style name="MultiLineListItemValue" parent="ListItemValue">
         <item name="android:maxLines">5</item>
     </style>
 </resources>

@@ -5,19 +5,19 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.codewars.databinding.ListItemChallengeBinding
-import com.example.android.codewars.models.Challenge
+import com.example.android.codewars.databinding.ListItemAuthoredChallengeBinding
+import com.example.android.codewars.models.AuthoredChallenge
 
-class ChallengesAdapter :
-    ListAdapter<Challenge, ChallengesAdapter.ViewHolder>(ChallengeDiffCallback) {
+class AuthoredChallengesAdapter :
+    ListAdapter<AuthoredChallenge, AuthoredChallengesAdapter.ViewHolder>(ChallengeDiffCallback) {
 
-    companion object ChallengeDiffCallback : DiffUtil.ItemCallback<Challenge>() {
+    companion object ChallengeDiffCallback : DiffUtil.ItemCallback<AuthoredChallenge>() {
 
-        override fun areItemsTheSame(oldItem: Challenge, newItem: Challenge): Boolean {
+        override fun areItemsTheSame(oldItem: AuthoredChallenge, newItem: AuthoredChallenge): Boolean {
             return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: Challenge, newItem: Challenge): Boolean {
+        override fun areContentsTheSame(oldItem: AuthoredChallenge, newItem: AuthoredChallenge): Boolean {
             return oldItem == newItem
         }
     }
@@ -31,17 +31,17 @@ class ChallengesAdapter :
         holder.bind(challenge!!)
     }
 
-    class ViewHolder private constructor(private val binding: ListItemChallengeBinding) :
+    class ViewHolder private constructor(private val binding: ListItemAuthoredChallengeBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(challenge: Challenge) {
-            binding.challenge = challenge
+        fun bind(authoredChallenge: AuthoredChallenge) {
+            binding.challenge = authoredChallenge
             binding.executePendingBindings()
         }
 
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = ListItemChallengeBinding.inflate(layoutInflater, parent, false)
+                val binding = ListItemAuthoredChallengeBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)
             }
         }

@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.android.codewars.models.Challenge
+import com.example.android.codewars.models.AuthoredChallenge
 import com.example.android.codewars.network.ApiStatus
 import com.example.android.codewars.network.CodewarsApi
 import kotlinx.coroutines.CoroutineScope
@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class ChallengesViewModel(application: Application, username: String) :
+class AuthoredChallengesViewModel(application: Application, username: String) :
     AndroidViewModel(application) {
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
@@ -21,15 +21,15 @@ class ChallengesViewModel(application: Application, username: String) :
     val status: LiveData<ApiStatus>
         get() = _status
 
-    private val _challenges = MutableLiveData<List<Challenge>>()
-    val challenges: LiveData<List<Challenge>>
-        get() = _challenges
+    private val _authoredChallenges = MutableLiveData<List<AuthoredChallenge>>()
+    val authoredChallenges: LiveData<List<AuthoredChallenge>>
+        get() = _authoredChallenges
 
     init {
         coroutineScope.launch {
             try {
                 _status.value = ApiStatus.LOADING
-                _challenges.value = CodewarsApi.retrofitService.getAutheredChallenges(username).data
+                _authoredChallenges.value = CodewarsApi.retrofitService.getAutheredChallenges(username).data
                 _status.value = ApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = ApiStatus.ERROR

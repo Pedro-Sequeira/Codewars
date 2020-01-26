@@ -1,7 +1,8 @@
 <resources>
 <!-- App and Fragment Titles -->
     <string name="search_user_fragment">Codewars Users</string>
-    <string name="challenges_fragment">Authored Challenges</string>
+    <string name="authored_challenges_fragment">Authored Challenges</string>
+    <string name="completed_challenges_fragment">Completed Challenges</string>
 
     <!-- Search -->
     <string name="search_hint">Search users</string>
@@ -18,5 +19,6 @@
     <!-- Challenge Item -->
     <string name="challenge_label">Name</string>
     <string name="description_label">Description</string>
+    <string name="completed_at_label">Completed at</string>
     <string name="challenge_loading_text">Loading challenges…</string>
 </resources>

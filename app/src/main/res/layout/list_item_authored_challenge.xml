@@ -7,7 +7,7 @@
 
         <variable
             name="challenge"
-            type="com.example.android.codewars.models.Challenge" />
+            type="com.example.android.codewars.models.AuthoredChallenge" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -27,7 +27,7 @@
 
             <TextView
                 android:id="@+id/challenge_label"
-                style="@style/UserListItemLabel"
+                style="@style/ListItemLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/challenge_label"
@@ -40,8 +40,8 @@
                 app:layout_constraintVertical_chainStyle="packed" />
 
             <TextView
-                android:id="@+id/username"
-                style="@style/UserListItemValue"
+                android:id="@+id/challenge_name"
+                style="@style/ListItemValue"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_normal"
@@ -53,7 +53,7 @@
 
             <TextView
                 android:id="@+id/description_label"
-                style="@style/UserListItemLabel"
+                style="@style/ListItemLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
@@ -66,13 +66,13 @@
 
             <TextView
                 android:id="@+id/rank"
-                style="@style/ChallengeListItemValue"
+                style="@style/MultiLineListItemValue"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{challenge.description}"
                 app:layout_constraintBaseline_toBaselineOf="@id/description_label"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/username"
+                app:layout_constraintStart_toStartOf="@id/challenge_name"
                 tools:text="Write a function that takes in a binary string and returns the equivalent decoded text (the text is ASCII encoded). Each 8 bits on the binary string represent 1 character on the ASCII table. The input string will always be a valid binary string." />
 
             <androidx.constraintlayout.widget.Barrier

@@ -18,6 +18,7 @@ buildscript {
         version_recyclerview = "1.1.0"
         version_room = "2.2.3"
         version_dagger = "2.25.4"
+        version_paged_list_adapter = "2.1.1"
     }
 
     repositories {
