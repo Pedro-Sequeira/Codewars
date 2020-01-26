@@ -2,7 +2,10 @@ package com.example.android.codewars.viewModels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.android.codewars.models.User
 import com.example.android.codewars.network.CodewarsApi
 import com.example.android.codewars.repository.UsersRepository
 import com.example.android.codewars.repository.database.UsersDatabase
@@ -20,11 +23,24 @@ class SearchUserViewModel(application: Application) :
     private val usersRepository = UsersRepository(database.usersDao, CodewarsApi.retrofitService)
 
     private val _navigateToChallenges = MutableLiveData<String>()
-    val navigateToChallenges
+    val navigateToChallenges: LiveData<String>
         get() = _navigateToChallenges
 
-    val users = usersRepository.users
+    private val dbUsers = usersRepository.users
+
+    private val _users = MediatorLiveData<List<User>>()
+    val users: LiveData<List<User>>
+        get() = _users
+
     val status = usersRepository.status
+
+    init {
+        _users.addSource(dbUsers) {
+            it?.let {
+                _users.value = it
+            }
+        }
+    }
 
     fun fetchUser(query: String?) {
         coroutineScope.launch {
@@ -32,8 +48,9 @@ class SearchUserViewModel(application: Application) :
         }
     }
 
+
     fun orderByRank() {
-        users.value?.sortedByDescending {
+        _users.value = dbUsers.value?.sortedByDescending {
             it.score
         }
     }
@@ -48,6 +65,6 @@ class SearchUserViewModel(application: Application) :
     }
 
     fun onChallengesNavigated() {
-        navigateToChallenges.value = null
+        _navigateToChallenges.value = null
     }
 }
