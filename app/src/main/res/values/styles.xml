@@ -1,13 +1,13 @@
 <resources>
 
-    <!-- Base application theme. -->
+    <!-- App Theme -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- List Item -->
     <style name="ListItemLabel" parent="TextAppearance.MaterialComponents.Subtitle2">
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
@@ -21,4 +21,14 @@
     <style name="MultiLineListItemValue" parent="ListItemValue">
         <item name="android:maxLines">5</item>
     </style>
+
+    <!-- Details -->
+    <style name="Title" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="Description" parent="TextAppearance.MaterialComponents.Body2">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
 </resources>

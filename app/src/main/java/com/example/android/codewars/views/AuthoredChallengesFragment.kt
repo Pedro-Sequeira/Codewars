@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.android.codewars.databinding.FragmentAuthoredChallengesBinding
 import com.example.android.codewars.viewModels.AuthoredChallengesViewModel
 import com.example.android.codewars.viewModels.AuthoredChallengesViewModelFactory
-import com.example.android.codewars.views.adapters.AuthoredChallengesAdapter
+import com.example.android.codewars.views.adapters.AuthoredChallengeAdapter
 
 class AuthoredChallengesFragment : Fragment() {
 
@@ -34,7 +34,7 @@ class AuthoredChallengesFragment : Fragment() {
 
         binding.lifecycleOwner = this
 
-        binding.authoredChallengesList.adapter = AuthoredChallengesAdapter()
+        binding.authoredChallengesList.adapter = AuthoredChallengeAdapter()
 
         return binding.root
     }

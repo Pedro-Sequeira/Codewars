@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.codewars.databinding.ListItemCompletedChallengeBinding
 import com.example.android.codewars.models.CompletedChallenge
 
-class CompletedChallengesAdapter :
-    PagedListAdapter<CompletedChallenge, CompletedChallengesAdapter.ViewHolder>(
+class CompletedChallengeAdapter(private val challengeClickListener: ChallengeClickListener) :
+    PagedListAdapter<CompletedChallenge, CompletedChallengeAdapter.ViewHolder>(
         CompletedChallengesDiffUtil
     ) {
 
@@ -35,13 +35,17 @@ class CompletedChallengesAdapter :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val completedChallenge = getItem(position)
-        holder.bind(completedChallenge)
+        holder.bind(completedChallenge!!, challengeClickListener)
     }
 
     class ViewHolder private constructor(private val binding: ListItemCompletedChallengeBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(completedChallenge: CompletedChallenge?) {
+        fun bind(
+            completedChallenge: CompletedChallenge,
+            challengeClickListener: ChallengeClickListener
+        ) {
             binding.completedChallenge = completedChallenge
+            binding.challengeClickListener = challengeClickListener
             binding.executePendingBindings()
         }
 
@@ -53,5 +57,9 @@ class CompletedChallengesAdapter :
                 return ViewHolder(binding)
             }
         }
+    }
+
+    class ChallengeClickListener(val clickListener: (challengeId: String) -> Unit) {
+        fun onClick(challenge: CompletedChallenge) = clickListener(challenge.id)
     }
 }

@@ -43,7 +43,7 @@ class SearchUserFragment : Fragment(), SearchView.OnQueryTextListener {
             username?.let {
                 this.findNavController().navigate(
                     SearchUserFragmentDirections
-                        .actionSearchFragmentToCompletedChallengesFragment(username)
+                        .actionSearchUserFragmentToCompletedChallengesFragment(username)
                 )
                 searchViewModel.onChallengesNavigated()
             }

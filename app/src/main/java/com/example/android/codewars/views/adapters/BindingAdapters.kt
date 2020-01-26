@@ -27,7 +27,7 @@ fun bindRecyclerViewUsers(recyclerView: RecyclerView, data: List<User>?) {
 
 @BindingAdapter("authoredChallengesList")
 fun bindRecyclerViewAuthoredChallenges(recyclerView: RecyclerView, data: List<AuthoredChallenge>?) {
-    val adapter = recyclerView.adapter as? AuthoredChallengesAdapter
+    val adapter = recyclerView.adapter as? AuthoredChallengeAdapter
     adapter?.submitList(data)
 }
 
@@ -35,19 +35,29 @@ fun bindRecyclerViewAuthoredChallenges(recyclerView: RecyclerView, data: List<Au
 fun bindStatus(progressBar: View, status: ApiStatus?) {
     when (status) {
         ApiStatus.LOADING -> {
-            when (progressBar.id) {
-                R.id.progress_bar_challenges -> {
-                    progressBar.progress_bar_text.text =
-                        progressBar.context.getString(R.string.challenge_loading_text)
-                }
-            }
             progressBar.visibility = View.VISIBLE
+            progressBar.progress_bar_text.text =
+                progressBar.context.getString(
+                    when (progressBar.id) {
+                        R.id.progress_bar_challenges -> R.string.challenge_loading_text
+                        else -> R.string.details_loading_text
+                    }
+                )
         }
         ApiStatus.ERROR -> {
             progressBar.visibility = View.GONE
             Snackbar.make(
                 progressBar,
-                progressBar.context.getString(R.string.user_not_found),
+                progressBar.context.getString(
+                    when (progressBar.id) {
+                        R.id.progress_bar_challenges -> {
+                            R.string.user_not_found
+                        }
+                        else -> {
+                            R.string.details_error
+                        }
+                    }
+                ),
                 Snackbar.LENGTH_SHORT
             ).show()
         }

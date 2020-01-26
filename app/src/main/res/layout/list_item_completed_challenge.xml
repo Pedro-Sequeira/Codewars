@@ -8,6 +8,10 @@
         <variable
             name="completedChallenge"
             type="com.example.android.codewars.models.CompletedChallenge" />
+
+        <variable
+            name="challengeClickListener"
+            type="com.example.android.codewars.views.adapters.CompletedChallengeAdapter.ChallengeClickListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -23,6 +27,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> challengeClickListener.onClick(completedChallenge)}"
             android:padding="@dimen/margin_small">
 
             <TextView

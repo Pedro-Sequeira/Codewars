@@ -48,16 +48,10 @@ class SearchUserViewModel(application: Application) :
         }
     }
 
-
     fun orderByRank() {
         _users.value = dbUsers.value?.sortedByDescending {
             it.score
         }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
     }
 
     fun onUserClicked(username: String) {
@@ -66,5 +60,10 @@ class SearchUserViewModel(application: Application) :
 
     fun onChallengesNavigated() {
         _navigateToChallenges.value = null
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
     }
 }

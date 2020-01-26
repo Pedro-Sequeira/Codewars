@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.example.android.codewars.databinding.FragmentCompletedChallengesBinding
 import com.example.android.codewars.viewModels.CompletedChallengesViewModel
 import com.example.android.codewars.viewModels.CompletedChallengesViewModelFactory
-import com.example.android.codewars.views.adapters.CompletedChallengesAdapter
+import com.example.android.codewars.views.adapters.CompletedChallengeAdapter
 
 class CompletedChallengesFragment : Fragment() {
 
@@ -35,6 +36,16 @@ class CompletedChallengesFragment : Fragment() {
 
         initAdapter()
 
+        viewModel.navigateToChallengeDetails.observe(this, Observer { challengeId ->
+            challengeId?.let {
+                this.findNavController().navigate(
+                    CompletedChallengesFragmentDirections
+                        .actionCompletedChallengesFragmentToChallengeDetailsFragment(challengeId)
+                )
+                viewModel.onChallengeDetailsNavigated()
+            }
+        })
+
         return binding.root
     }
 
@@ -42,15 +53,16 @@ class CompletedChallengesFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val viewModelFactory = CompletedChallengesViewModelFactory(application, username)
 
-        val viewModel = ViewModelProviders
+        return ViewModelProviders
             .of(this, viewModelFactory)
             .get(CompletedChallengesViewModel::class.java)
-
-        return viewModel
     }
 
     private fun initAdapter() {
-        val adapter = CompletedChallengesAdapter()
+        val adapter =
+            CompletedChallengeAdapter(CompletedChallengeAdapter.ChallengeClickListener { challengeId ->
+                viewModel.onChallengeClicked(challengeId)
+            })
         binding.completedChallengesList.adapter = adapter
 
         viewModel.completedChallenges.observe(this, Observer {

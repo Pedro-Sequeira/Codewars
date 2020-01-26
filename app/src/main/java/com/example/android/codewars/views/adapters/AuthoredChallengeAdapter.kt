@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.android.codewars.databinding.ListItemAuthoredChallengeBinding
 import com.example.android.codewars.models.AuthoredChallenge
 
-class AuthoredChallengesAdapter :
-    ListAdapter<AuthoredChallenge, AuthoredChallengesAdapter.ViewHolder>(ChallengeDiffCallback) {
+class AuthoredChallengeAdapter :
+    ListAdapter<AuthoredChallenge, AuthoredChallengeAdapter.ViewHolder>(ChallengeDiffCallback) {
 
     companion object ChallengeDiffCallback : DiffUtil.ItemCallback<AuthoredChallenge>() {
 

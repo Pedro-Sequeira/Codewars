@@ -1,8 +1,10 @@
 <resources>
 <!-- App and Fragment Titles -->
+    <string name="app_name">Codewars</string>
     <string name="search_user_fragment">Codewars Users</string>
     <string name="authored_challenges_fragment">Authored Challenges</string>
     <string name="completed_challenges_fragment">Completed Challenges</string>
+    <string name="challenge_details_fragment">Challenge Details</string>
 
     <!-- Search -->
     <string name="search_hint">Search users</string>
@@ -20,5 +22,9 @@
     <string name="challenge_label">Name</string>
     <string name="description_label">Description</string>
     <string name="completed_at_label">Completed at</string>
+
+    <!-- Loading View -->
     <string name="challenge_loading_text">Loading challenges…</string>
+    <string name="details_loading_text">Loading details…</string>
+    <string name="details_error">There was an error loading challenge details!</string>
 </resources>
