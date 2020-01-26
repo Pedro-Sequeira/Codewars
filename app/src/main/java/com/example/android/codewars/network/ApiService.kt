@@ -8,6 +8,8 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
+const val PAGE_SIZE = 100
+const val API_FIRST_PAGE = 0
 private const val BASE_URL = "https://www.codewars.com/api/v1/users/"
 
 private val moshi = Moshi.Builder()
@@ -29,7 +31,7 @@ interface ApiService {
     @GET("{username}/code-challenges/completed")
     suspend fun getCompletedChallenges(
         @Path("username") username: String?,
-        @Query("page") page: Int = 0
+        @Query("page") page: Int = API_FIRST_PAGE
     ): CompletedChallengesResponse?
 }
 

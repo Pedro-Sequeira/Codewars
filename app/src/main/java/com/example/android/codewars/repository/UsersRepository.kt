@@ -26,10 +26,6 @@ class UsersRepository @Inject constructor(
     val status: LiveData<ApiStatus>
         get() = _status
 
-    private val _user = MutableLiveData<User>()
-    val user: LiveData<User>
-        get() = _user
-
     val users: LiveData<List<User>> = Transformations.map(usersDao.getAllUsers()) {
         it.asDomainModel()
     }
@@ -48,7 +44,6 @@ class UsersRepository @Inject constructor(
                 val result = apiService.getUser(username)
                 if (result.success == null) {   // success only shows on failure
                     _status.value = ApiStatus.DONE
-                    _user.value = result.asDomainModel()
                     insertUser(result.asDatabaseModel())
                 }
             } catch (e: Exception) {

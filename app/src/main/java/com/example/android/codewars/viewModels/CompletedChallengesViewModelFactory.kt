@@ -10,8 +10,8 @@ class CompletedChallengesViewModelFactory(
 ) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(AuthoredChallengesViewModel::class.java)) {
-            return AuthoredChallengesViewModel(application, username) as T
+        if (modelClass.isAssignableFrom(CompletedChallengesViewModel::class.java)) {
+            return CompletedChallengesViewModel(application, username) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

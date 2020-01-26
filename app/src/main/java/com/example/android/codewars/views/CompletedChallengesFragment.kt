@@ -6,54 +6,55 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.paging.DataSource
-import androidx.paging.LivePagedListBuilder
-import androidx.paging.PagedList
+import androidx.lifecycle.ViewModelProviders
 import com.example.android.codewars.databinding.FragmentCompletedChallengesBinding
-import com.example.android.codewars.models.CompletedChallenge
-import com.example.android.codewars.repository.CompletedChallengesDataSource
+import com.example.android.codewars.viewModels.CompletedChallengesViewModel
+import com.example.android.codewars.viewModels.CompletedChallengesViewModelFactory
 import com.example.android.codewars.views.adapters.CompletedChallengesAdapter
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 
 class CompletedChallengesFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
-            : View? {
+    private lateinit var binding: FragmentCompletedChallengesBinding
+    private lateinit var viewModel: CompletedChallengesViewModel
 
-        val binding = FragmentCompletedChallengesBinding.inflate(inflater)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+        binding = FragmentCompletedChallengesBinding.inflate(inflater)
 
         val arguments = CompletedChallengesFragmentArgs.fromBundle(arguments!!)
-
         val username = arguments.username
+
+        viewModel = initViewModel(username)
+        binding.viewModel = viewModel
 
         binding.lifecycleOwner = this
 
-        val adapter = CompletedChallengesAdapter()
-        binding.completedChallengesList.adapter = adapter
-
-        val config = PagedList.Config.Builder()
-            .setPageSize(50)
-            .setPrefetchDistance(30)
-            .build()
-
-        val liveData = initializedPagedListBuilder(config, username).build()
-
-        liveData.observe(this, Observer<PagedList<CompletedChallenge>> { pagedList ->
-            adapter.submitList(pagedList)
-        })
+        initAdapter()
 
         return binding.root
     }
 
-    private fun initializedPagedListBuilder(config: PagedList.Config, username: String):
-            LivePagedListBuilder<Int, CompletedChallenge> {
+    private fun initViewModel(username: String): CompletedChallengesViewModel {
+        val application = requireNotNull(this.activity).application
+        val viewModelFactory = CompletedChallengesViewModelFactory(application, username)
 
-        val dataSourceFactory = object : DataSource.Factory<Int, CompletedChallenge>() {
-            override fun create(): DataSource<Int, CompletedChallenge> {
-                return CompletedChallengesDataSource(CoroutineScope(Dispatchers.IO), username)
-            }
-        }
-        return LivePagedListBuilder<Int, CompletedChallenge>(dataSourceFactory, config)
+        val viewModel = ViewModelProviders
+            .of(this, viewModelFactory)
+            .get(CompletedChallengesViewModel::class.java)
+
+        return viewModel
+    }
+
+    private fun initAdapter() {
+        val adapter = CompletedChallengesAdapter()
+        binding.completedChallengesList.adapter = adapter
+
+        viewModel.completedChallenges.observe(this, Observer {
+            adapter.submitList(it)
+        })
     }
 }
