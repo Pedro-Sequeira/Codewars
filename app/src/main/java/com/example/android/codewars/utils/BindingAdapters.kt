@@ -5,6 +5,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.codewars.R
+import com.example.android.codewars.models.AuthoredChallenge
 import com.example.android.codewars.models.Challenge
 import com.example.android.codewars.models.User
 import com.example.android.codewars.network.ApiStatus
@@ -36,7 +37,7 @@ fun TextView.setLeaderboardRankFormatted(user: User) {
 }
 
 @BindingAdapter("authoredChallengesList")
-fun bindRecyclerViewAuthoredChallenges(recyclerView: RecyclerView, data: List<Challenge>?) {
+fun bindRecyclerViewAuthoredChallenges(recyclerView: RecyclerView, data: List<AuthoredChallenge>?) {
     val adapter = recyclerView.adapter as? AuthoredChallengeAdapter
     adapter?.submitList(data)
 }
