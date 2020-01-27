@@ -34,7 +34,7 @@ fun TextView.setLeaderboardRankFormatted(user: User) {
 }
 
 @BindingAdapter("dateFormatted")
-fun TextView.setDateFormatted(date: String) {
+fun TextView.setDateFormatted(date: String?) {
     date.let {
         text = formatDate(date)
     }

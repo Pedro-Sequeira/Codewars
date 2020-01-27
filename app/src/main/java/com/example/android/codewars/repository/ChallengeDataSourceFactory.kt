@@ -7,7 +7,7 @@ import com.example.android.codewars.models.Challenge
 class ChallengeDataSourceFactory(private val username: String, private val challengeType: String) :
     DataSource.Factory<Int, Challenge>() {
 
-    private var liveDataSource = MutableLiveData<ChallengeDataSource>()
+    private val liveDataSource = MutableLiveData<ChallengeDataSource>()
 
     override fun create(): DataSource<Int, Challenge> {
         val dataSource = ChallengeDataSource(username, challengeType)
