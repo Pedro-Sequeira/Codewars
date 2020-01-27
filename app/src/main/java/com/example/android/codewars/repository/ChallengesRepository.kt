@@ -13,8 +13,9 @@ class ChallengesRepository {
 
     fun fetchChallengePagedList(
         username: String,
-        challengeType: Int
+        challengeType: String
     ): LiveData<PagedList<Challenge>> {
+
         dataSourceFactory = ChallengeDataSourceFactory(username, challengeType)
 
         val config = PagedList.Config.Builder()

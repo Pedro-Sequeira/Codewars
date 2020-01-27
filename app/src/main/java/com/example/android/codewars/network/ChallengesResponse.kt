@@ -2,6 +2,6 @@ package com.example.android.codewars.network
 
 import com.example.android.codewars.models.Challenge
 
-class CompletedChallengesResponse(
+class ChallengesResponse(
     val data: List<Challenge>
 )

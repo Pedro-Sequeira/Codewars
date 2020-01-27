@@ -10,10 +10,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-const val COMPLETED_TYPE = 0
-const val AUTHORED_TYPE = 1
+const val COMPLETED_TYPE = "completed"
+const val AUTHORED_TYPE = "authored"
 
-class ChallengeDataSource(private val username: String, private val challengeType: Int) :
+class ChallengeDataSource(private val username: String, private val challengeType: String) :
     PageKeyedDataSource<Int, Challenge>() {
 
     private val apiService = CodewarsApi.retrofitService
@@ -38,10 +38,11 @@ class ChallengeDataSource(private val username: String, private val challengeTyp
                         )
                     }
                     AUTHORED_TYPE -> {
-                        val challenges = apiService.getAutheredChallenges(username)
+                        val response = apiService.getAutheredChallenges(username)
+                        val challenges = response?.data
 
                         callback.onResult(
-                            challenges,
+                            challenges ?: listOf(),
                             null,
                             API_FIRST_PAGE + 1
                         )
@@ -67,10 +68,10 @@ class ChallengeDataSource(private val username: String, private val challengeTyp
                         )
                     }
                     AUTHORED_TYPE -> {
-                        val challenges = apiService.getAutheredChallenges(username)
-
+                        val response = apiService.getAutheredChallenges(username)
+                        val challenges = response?.data
                         callback.onResult(
-                            challenges,
+                            challenges ?: listOf(),
                             params.key + 1
                         )
                     }
@@ -95,10 +96,10 @@ class ChallengeDataSource(private val username: String, private val challengeTyp
                         )
                     }
                     AUTHORED_TYPE -> {
-                        val challenges = apiService.getAutheredChallenges(username)
-
+                        val response = apiService.getAutheredChallenges(username)
+                        val challenges = response?.data
                         callback.onResult(
-                            challenges,
+                            challenges ?: listOf(),
                             params.key - 1
                         )
                     }

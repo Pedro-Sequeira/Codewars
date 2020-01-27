@@ -5,7 +5,6 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.codewars.R
-import com.example.android.codewars.models.Challenge
 import com.example.android.codewars.models.User
 import com.example.android.codewars.network.ApiStatus
 import com.example.android.codewars.views.adapters.UserAdapter
@@ -31,6 +30,13 @@ fun bindRecyclerViewUsers(recyclerView: RecyclerView, data: List<User>?) {
 fun TextView.setLeaderboardRankFormatted(user: User) {
     user.let {
         text = convertRankToFormatted(user)
+    }
+}
+
+@BindingAdapter("dateFormatted")
+fun TextView.setDateFormatted(date: String) {
+    date.let {
+        text = formatDate(date)
     }
 }
 

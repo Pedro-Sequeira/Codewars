@@ -76,7 +76,7 @@
                 style="@style/ListItemValue"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@{challenge.completedAt}"
+                app:dateFormatted="@{challenge.completedAt}"
                 app:layout_constraintBaseline_toBaselineOf="@id/completed_label"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/challenge_name"

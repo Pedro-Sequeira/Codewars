@@ -19,7 +19,6 @@ import com.example.android.codewars.views.adapters.ChallengeAdapter
 class ChallengesFragment : Fragment() {
 
     private lateinit var binding: FragmentChallengesBinding
-    private lateinit var viewModel: ChallengeViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,11 +52,11 @@ class ChallengesFragment : Fragment() {
         binding.navigationBar.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.navigation_completed -> {
-                    viewModel.refreshChallenges(COMPLETED_TYPE)
+                    viewModel.refreshChallengeList(COMPLETED_TYPE)
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.navigation_authored -> {
-                    viewModel.refreshChallenges(AUTHORED_TYPE)
+                    viewModel.refreshChallengeList(AUTHORED_TYPE)
                     return@setOnNavigationItemSelectedListener true
                 }
             }
