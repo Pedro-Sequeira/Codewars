@@ -60,7 +60,7 @@
             tools:listitem="@layout/list_item_user" />
 
         <include
-            android:id="@+id/progress_bar"
+            android:id="@+id/progress_bar_users"
             layout="@layout/layout_progress_bar"
             android:layout_width="0dp"
             android:layout_height="0dp"

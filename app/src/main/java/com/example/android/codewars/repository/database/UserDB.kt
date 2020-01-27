@@ -10,6 +10,8 @@ data class UserDB constructor(
     val username: String,
     val rank: String,
     val score: Int,
+    val leaderboardPosition: Long?,
+    val bestLanguage: String,
     val creationDate: Long
 )
 
@@ -18,7 +20,9 @@ fun List<UserDB>.asDomainModel(): List<User> {
         User(
             username = it.username,
             rank = it.rank,
-            score = it.score
+            score = it.score,
+            leaderboardPosition = it.leaderboardPosition,
+            bestLanguage = it.bestLanguage
         )
     }
 }

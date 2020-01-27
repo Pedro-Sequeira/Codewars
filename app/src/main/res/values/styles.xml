@@ -12,6 +12,10 @@
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
+ <style name="LeaderBoardPosition" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
     <style name="ListItemValue" parent="TextAppearance.MaterialComponents.Body2">
         <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="android:maxLines">1</item>

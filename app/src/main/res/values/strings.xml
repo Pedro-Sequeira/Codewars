@@ -10,7 +10,6 @@
     <string name="search_hint">Search users</string>
     <string name="recent_search_header">Recent Searches</string>
     <string name="order_button"><u>Order by rank</u></string>
-    <string name="progress_bar_text">Searching for user…</string>
     <string name="user_not_found">User not found!</string>
 
     <!-- User Item -->
@@ -24,6 +23,7 @@
     <string name="completed_at_label">Completed at</string>
 
     <!-- Loading View -->
+    <string name="users_loading_text">Searching for user…</string>
     <string name="challenge_loading_text">Loading challenges…</string>
     <string name="details_loading_text">Loading details…</string>
     <string name="details_error">There was an error loading challenge details!</string>

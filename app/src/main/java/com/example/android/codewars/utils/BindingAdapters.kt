@@ -1,12 +1,15 @@
-package com.example.android.codewars.views.adapters
+package com.example.android.codewars.utils
 
 import android.view.View
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.codewars.R
-import com.example.android.codewars.models.AuthoredChallenge
+import com.example.android.codewars.models.Challenge
 import com.example.android.codewars.models.User
 import com.example.android.codewars.network.ApiStatus
+import com.example.android.codewars.views.adapters.AuthoredChallengeAdapter
+import com.example.android.codewars.views.adapters.UserAdapter
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.layout_progress_bar.view.*
 
@@ -25,8 +28,15 @@ fun bindRecyclerViewUsers(recyclerView: RecyclerView, data: List<User>?) {
     })
 }
 
+@BindingAdapter("leaderboardPosition")
+fun TextView.setLeaderboardRankFormatted(user: User) {
+    user.let {
+        text = convertRankToFormatted(user)
+    }
+}
+
 @BindingAdapter("authoredChallengesList")
-fun bindRecyclerViewAuthoredChallenges(recyclerView: RecyclerView, data: List<AuthoredChallenge>?) {
+fun bindRecyclerViewAuthoredChallenges(recyclerView: RecyclerView, data: List<Challenge>?) {
     val adapter = recyclerView.adapter as? AuthoredChallengeAdapter
     adapter?.submitList(data)
 }
@@ -40,6 +50,7 @@ fun bindStatus(progressBar: View, status: ApiStatus?) {
                 progressBar.context.getString(
                     when (progressBar.id) {
                         R.id.progress_bar_challenges -> R.string.challenge_loading_text
+                        R.id.progress_bar_users -> R.string.users_loading_text
                         else -> R.string.details_loading_text
                     }
                 )
@@ -50,7 +61,7 @@ fun bindStatus(progressBar: View, status: ApiStatus?) {
                 progressBar,
                 progressBar.context.getString(
                     when (progressBar.id) {
-                        R.id.progress_bar_challenges -> {
+                        R.id.progress_bar_users -> {
                             R.string.user_not_found
                         }
                         else -> {
@@ -58,7 +69,7 @@ fun bindStatus(progressBar: View, status: ApiStatus?) {
                         }
                     }
                 ),
-                Snackbar.LENGTH_SHORT
+                Snackbar.LENGTH_LONG
             ).show()
         }
         ApiStatus.DONE -> {
