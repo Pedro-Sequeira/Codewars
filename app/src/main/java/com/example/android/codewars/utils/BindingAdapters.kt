@@ -5,11 +5,9 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.codewars.R
-import com.example.android.codewars.models.AuthoredChallenge
 import com.example.android.codewars.models.Challenge
 import com.example.android.codewars.models.User
 import com.example.android.codewars.network.ApiStatus
-import com.example.android.codewars.views.adapters.AuthoredChallengeAdapter
 import com.example.android.codewars.views.adapters.UserAdapter
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.layout_progress_bar.view.*
@@ -34,12 +32,6 @@ fun TextView.setLeaderboardRankFormatted(user: User) {
     user.let {
         text = convertRankToFormatted(user)
     }
-}
-
-@BindingAdapter("authoredChallengesList")
-fun bindRecyclerViewAuthoredChallenges(recyclerView: RecyclerView, data: List<AuthoredChallenge>?) {
-    val adapter = recyclerView.adapter as? AuthoredChallengeAdapter
-    adapter?.submitList(data)
 }
 
 @BindingAdapter("apiStatus")

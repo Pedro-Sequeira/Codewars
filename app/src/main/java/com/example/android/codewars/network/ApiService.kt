@@ -19,7 +19,7 @@ interface ApiService {
     suspend fun getUser(@Path("username") username: String?): UserDTO
 
     @GET("users/{username}/code-challenges/authored")
-    suspend fun getAutheredChallenges(@Path("username") username: String?): AuthoredChallengesDTO
+    suspend fun getAutheredChallenges(@Path("username") username: String?): List<Challenge>
 
     @GET("users/{username}/code-challenges/completed")
     suspend fun getCompletedChallenges(

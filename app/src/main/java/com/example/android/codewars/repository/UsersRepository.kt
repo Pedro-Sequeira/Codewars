@@ -7,7 +7,6 @@ import com.example.android.codewars.models.User
 import com.example.android.codewars.network.ApiService
 import com.example.android.codewars.network.ApiStatus
 import com.example.android.codewars.network.asDatabaseModel
-import com.example.android.codewars.network.asDomainModel
 import com.example.android.codewars.repository.database.UserDB
 import com.example.android.codewars.repository.database.UsersDao
 import com.example.android.codewars.repository.database.asDomainModel
@@ -32,8 +31,8 @@ class UsersRepository @Inject constructor(
 
     suspend fun fetchUser(username: String?) {
         withContext(Dispatchers.IO) {
+            usersDao.getUser(username)
             refreshUser(username)
-            usersDao.fetchUser(username)
         }
     }
 

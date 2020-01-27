@@ -11,43 +11,19 @@
         android:label="@string/search_user_fragment"
         tools:layout="@layout/fragment_search_user">
         <action
-            android:id="@+id/action_searchFragment_to_challengesFragment"
-            app:destination="@id/authored_challenges_fragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
             android:id="@+id/action_search_user_fragment_to_completed_challenges_fragment"
-            app:destination="@id/completed_challenges_fragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:destination="@id/challenges_fragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/authored_challenges_fragment"
-        android:name="com.example.android.codewars.views.AuthoredChallengesFragment"
-        android:label="@string/authored_challenges_fragment"
-        tools:layout="@layout/fragment_authored_challenges">
-        <argument
-            android:name="username"
-            app:argType="string" />
-        <action
-            android:id="@+id/action_authored_challenges_fragment_to_challenge_details_fragment"
-            app:destination="@id/challenge_details_fragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/completed_challenges_fragment"
-        android:name="com.example.android.codewars.views.CompletedChallengesFragment"
-        android:label="@string/completed_challenges_fragment"
+        android:id="@+id/challenges_fragment"
+        android:name="com.example.android.codewars.views.ChallengesFragment"
+        android:label="@string/challenges_fragment"
         app:enterAnim="@anim/nav_default_enter_anim"
         app:exitAnim="@anim/nav_default_exit_anim"
         app:popEnterAnim="@anim/nav_default_pop_enter_anim"
         app:popExitAnim="@anim/nav_default_pop_exit_anim"
-        tools:layout="@layout/fragment_completed_challenges">
+        tools:layout="@layout/fragment_challenges">
         <argument
             android:name="username"
             app:argType="string" />

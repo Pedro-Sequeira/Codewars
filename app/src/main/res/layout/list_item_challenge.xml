@@ -5,13 +5,15 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
-            name="completedChallenge"
-            type="com.example.android.codewars.models.CompletedChallenge" />
+            name="challenge"
+            type="com.example.android.codewars.models.Challenge" />
 
         <variable
             name="challengeClickListener"
-            type="com.example.android.codewars.views.adapters.CompletedChallengeAdapter.ChallengeClickListener" />
+            type="com.example.android.codewars.views.adapters.ChallengeAdapter.ChallengeClickListener" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -27,7 +29,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> challengeClickListener.onClick(completedChallenge)}"
+            android:onClick="@{() -> challengeClickListener.onClick(challenge)}"
             android:padding="@dimen/margin_small">
 
             <TextView
@@ -50,7 +52,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_normal"
-                android:text="@{completedChallenge.name}"
+                android:text="@{challenge.name}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/barrier"
                 app:layout_constraintTop_toTopOf="parent"
@@ -63,22 +65,46 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
                 android:text="@string/completed_at_label"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/description_label"
                 app:layout_constraintEnd_toStartOf="@id/barrier"
                 app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/challenge_label" />
 
             <TextView
-                android:id="@+id/completed_at"
+                android:id="@+id/completed_value"
                 style="@style/ListItemValue"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@{completedChallenge.completedAt}"
+                android:text="@{challenge.completedAt}"
                 app:layout_constraintBaseline_toBaselineOf="@id/completed_label"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@id/challenge_name"
                 tools:text="2020-01-22T07:51:43.952Z" />
+
+            <TextView
+                android:id="@+id/description_label"
+                style="@style/ListItemLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_small"
+                android:text="@string/description_label"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/barrier"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/completed_label" />
+
+            <TextView
+                android:id="@+id/description_value"
+                style="@style/MultiLineListItemValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{challenge.description}"
+                app:layout_constraintBaseline_toBaselineOf="@id/description_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/challenge_name"
+                tools:text="Write a function that takes in a binary string and returns the equivalent decoded text (the text is ASCII encoded). Each 8 bits on the binary string represent 1 character on the ASCII table. The input string will always be a valid binary string." />
 
             <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/barrier"
@@ -86,6 +112,20 @@
                 android:layout_height="wrap_content"
                 app:barrierDirection="end"
                 app:constraint_referenced_ids="challenge_label,completed_label" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/completed_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{challenge.completedAt != null ? View.VISIBLE: View.GONE}"
+                app:constraint_referenced_ids="completed_label,completed_value" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/description_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{challenge.description != null ? View.VISIBLE: View.GONE}"
+                app:constraint_referenced_ids="description_label,description_value" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.android.codewars.viewModels.CompletedChallengesViewModel" />
+            type="com.example.android.codewars.viewModels.ChallengeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,16 +16,25 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/completed_challenges_list"
+            android:id="@+id/challenges_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:clipToPadding="false"
             android:paddingBottom="@dimen/margin_extra_small"
             android:scrollbarStyle="insideOverlay"
             android:scrollbars="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/navigation_bar"
+            app:layout_constraintTop_toTopOf="parent"
             tools:itemCount="10"
-            tools:listitem="@layout/list_item_completed_challenge" />
+            tools:listitem="@layout/list_item_challenge" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/navigation_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/bottom_nav" />
 
         <include
             android:id="@+id/progress_bar_challenges"

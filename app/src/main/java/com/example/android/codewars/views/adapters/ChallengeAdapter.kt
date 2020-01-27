@@ -5,27 +5,25 @@ import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.android.codewars.databinding.ListItemCompletedChallengeBinding
-import com.example.android.codewars.models.CompletedChallenge
+import com.example.android.codewars.databinding.ListItemChallengeBinding
+import com.example.android.codewars.models.Challenge
 
-class CompletedChallengeAdapter(private val challengeClickListener: ChallengeClickListener) :
-    PagedListAdapter<CompletedChallenge, CompletedChallengeAdapter.ViewHolder>(
-        CompletedChallengesDiffUtil
-    ) {
+class ChallengeAdapter(private val challengeClickListener: ChallengeClickListener) :
+    PagedListAdapter<Challenge, ChallengeAdapter.ViewHolder>(CompletedChallengesDiffUtil) {
 
-    companion object CompletedChallengesDiffUtil : DiffUtil.ItemCallback<CompletedChallenge>() {
+    companion object CompletedChallengesDiffUtil : DiffUtil.ItemCallback<Challenge>() {
         override fun areItemsTheSame(
-            oldItem: CompletedChallenge,
-            newItem: CompletedChallenge
+            oldItem: Challenge,
+            newItem: Challenge
         ): Boolean {
             return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(
-            oldItem: CompletedChallenge,
-            newItem: CompletedChallenge
+            oldItem: Challenge,
+            newItem: Challenge
         ): Boolean {
-            return oldItem.name == newItem.name && oldItem.completedAt == newItem.completedAt
+            return oldItem.name == newItem.name
         }
     }
 
@@ -34,17 +32,17 @@ class CompletedChallengeAdapter(private val challengeClickListener: ChallengeCli
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val completedChallenge = getItem(position)
-        holder.bind(completedChallenge!!, challengeClickListener)
+        val challenge = getItem(position)
+        holder.bind(challenge!!, challengeClickListener)
     }
 
-    class ViewHolder private constructor(private val binding: ListItemCompletedChallengeBinding) :
+    class ViewHolder private constructor(private val binding: ListItemChallengeBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(
-            completedChallenge: CompletedChallenge,
+            challenge: Challenge,
             challengeClickListener: ChallengeClickListener
         ) {
-            binding.completedChallenge = completedChallenge
+            binding.challenge = challenge
             binding.challengeClickListener = challengeClickListener
             binding.executePendingBindings()
         }
@@ -53,13 +51,13 @@ class CompletedChallengeAdapter(private val challengeClickListener: ChallengeCli
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding =
-                    ListItemCompletedChallengeBinding.inflate(layoutInflater, parent, false)
+                    ListItemChallengeBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)
             }
         }
     }
 
     class ChallengeClickListener(val clickListener: (challengeId: String) -> Unit) {
-        fun onClick(challenge: CompletedChallenge) = clickListener(challenge.id)
+        fun onClick(challenge: Challenge) = clickListener(challenge.id)
     }
 }
